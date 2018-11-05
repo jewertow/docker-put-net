@@ -30,8 +30,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
     compile 'com.google.guava:guava:20.0'
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4.1'
     compile 'net.java.dev.jna:jna:4.2.2'
-    compileOnly 'org.projectlombok:lombok:1.16.16'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'org.springframework.kafka:spring-kafka-test:1.2.2.RELEASE'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"

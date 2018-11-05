@@ -54,7 +54,7 @@ services:
       - offer-store-data:/bitnami
 
   offer-search-service:
-    image: allezon/offer-search-service:0.8
+    image: allezon/offer-search-service:0.9
     container_name: offer-search-service
     ports:
       - "8082:8080"

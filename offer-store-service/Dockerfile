@@ -11,8 +11,9 @@ ENV MONGODB_PASSWORD=""
 ENV MONGODB_DATABASE=""
 
 WORKDIR /
-COPY app.jar .
-ENTRYPOINT java -jar \
+COPY target/ .
+RUN ls -la
+ENTRYPOINT universal/stage/bin/offer-store-service \
     -Dkafka.consumer.bootstrap=${KAFKA_CONSUMER_BOOTSTRAP} \
     -Dkafka.consumer.topic=${KAFKA_CONSUMER_TOPIC} \
     -Dkafka.consumer.group=${KAFKA_CONSUMER_GROUP} \
@@ -20,6 +21,5 @@ ENTRYPOINT java -jar \
     -Dspring.data.mongodb.port=${MONGODB_PORT} \
     -Dspring.data.mongodb.username=${MONGODB_USERNAME} \
     -Dspring.data.mongodb.password=${MONGODB_PASSWORD} \
-    -Dspring.data.mongodb.database=${MONGODB_DATABASE} \
-    ./app.jar
+    -Dspring.data.mongodb.database=${MONGODB_DATABASE}
 

@@ -19,10 +19,10 @@ constructor(private val offerRepository: OfferRepository) {
 
     @KafkaListener(topics = ["\${kafka.consumer.topic}"])
     fun onReceiving(
-            offer: Offer,
-            @Header(KafkaHeaders.OFFSET) offset: Int?,
-            @Header(KafkaHeaders.RECEIVED_PARTITION_ID) partition: Int,
-            @Header(KafkaHeaders.RECEIVED_TOPIC) topic: String
+        offer: Offer,
+        @Header(KafkaHeaders.OFFSET) offset: Int?,
+        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) partition: Int,
+        @Header(KafkaHeaders.RECEIVED_TOPIC) topic: String
     ) {
         log.info("Received event: topic = {}, partition = {}, offset = {}, offer = {}", topic, partition, offset, offer)
         offerRepository.save(offer)

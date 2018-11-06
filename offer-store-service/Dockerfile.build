@@ -1,7 +1,0 @@
-FROM hseeberger/scala-sbt
-
-COPY . /tmp
-WORKDIR /tmp
-
-RUN sbt compile
-RUN sbt universal:stage

@@ -1,7 +1,0 @@
-FROM openjdk:8
-
-COPY . /tmp
-WORKDIR /tmp
-
-RUN ./mvnw clean install
-

@@ -6,7 +6,5 @@ import pl.allezon.offersearch.domain.Offer
 
 @Repository
 interface OfferRepository : ElasticsearchRepository<Offer, Long> {
-
     fun findByNameOrDescription(name: String, description: String): List<Offer>
-
 }

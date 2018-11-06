@@ -31,5 +31,4 @@ open class Offer {
     override fun toString(): String {
         return "Offer(id=$id, name=$name, description=$description)"
     }
-
 }

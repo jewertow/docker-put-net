@@ -19,9 +19,9 @@ import java.util.HashMap
 @Configuration
 @EnableKafka
 open class KafkaListenerConfig(
-        @Value("\${kafka.consumer.bootstrap}") private val bootstrap: String,
-        @Value("\${kafka.consumer.group}") private val group: String,
-        @Value("\${kafka.consumer.topic}") private val topic: String
+    @Value("\${kafka.consumer.bootstrap}") private val bootstrap: String,
+    @Value("\${kafka.consumer.group}") private val group: String,
+    @Value("\${kafka.consumer.topic}") private val topic: String
 ) {
 
     @Bean

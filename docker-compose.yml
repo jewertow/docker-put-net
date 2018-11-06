@@ -1,23 +1,23 @@
 version: '3'
 services:
-  offer-core-service:
-    image: allezon/offer-core-service:1.2
-    container_name: offer-core-service
+  offer-storage-service:
+    image: allezon/offer-storage-service:1.6
+    container_name: offer-storage-service
     ports:
       - "8080:8080"
     environment:
       - KAFKA_PRODUCER_BOOTSTRAP=kafka:9092
       - KAFKA_OFFER_CHANGE_TOPIC=offerChange
-      - POSTGRES_HOST=offer-core-db
+      - POSTGRES_HOST=offer-storage-db
       - POSTGRES_USERNAME=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=offers  
     depends_on: 
-      - offer-core-db
+      - offer-storage-db
     restart: on-failure:3
-  offer-core-db:
+  offer-storage-db:
     image: postgres
-    container_name: offer-core-db
+    container_name: offer-storage-db
     ports:
       - "5432:5432"
     environment:
@@ -25,36 +25,36 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_DB=offers
     volumes:
-      - offer-core-data:/var/lib/postgresql/data
+      - offer-storage-data:/var/lib/postgresql/data
 
-  offer-store-service:
-    image: allezon/offer-store-service:1.2
-    container_name: offer-store-service
+  offer-cache-service:
+    image: allezon/offer-cache-service:1.6
+    container_name: offer-cache-service
     ports:
       - "8081:8080"
     environment:
       - KAFKA_CONSUMER_BOOTSTRAP=kafka:9092
       - KAFKA_CONSUMER_TOPIC=offerChange
-      - MONGODB_HOST=offer-store-db
+      - MONGODB_HOST=offer-cache-db
       - MONGODB_PORT=27017
       - MONGODB_USERNAME=admin
       - MONGODB_PASSWORD=admin
       - MONGODB_DATABASE=offers
     depends_on:
-      - offer-store-db
+      - offer-cache-db
     restart: on-failure:3
-  offer-store-db:
+  offer-cache-db:
     image: bitnami/mongodb:latest
-    container_name: offer-store-db
+    container_name: offer-cache-db
     environment:
       - MONGODB_USERNAME=admin
       - MONGODB_PASSWORD=admin
       - MONGODB_DATABASE=offers
     volumes:
-      - offer-store-data:/bitnami
+      - offer-cache-data:/bitnami
 
   offer-search-service:
-    image: allezon/offer-search-service:1.2
+    image: allezon/offer-search-service:1.6
     container_name: offer-search-service
     ports:
       - "8082:8080"
@@ -103,6 +103,6 @@ services:
     restart: on-failure:10
 
 volumes:
-  offer-core-data:
-  offer-store-data:
+  offer-storage-data:
+  offer-cache-data:
   offer-search-data:

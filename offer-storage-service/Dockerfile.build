@@ -1,7 +1,7 @@
-FROM openjdk:8
+FROM maven:latest
 
 COPY . /tmp
 WORKDIR /tmp
 
-RUN ./mvnw clean install
+RUN mvn install
 

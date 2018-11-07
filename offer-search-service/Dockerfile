@@ -8,6 +8,8 @@ ENV ES_CLUSTER_NAME=""
 ENV ES_HOST=""
 ENV ES_PORT=""
 
+EXPOSE 8080
+
 WORKDIR /
 COPY app.jar .
 ENTRYPOINT java -jar \

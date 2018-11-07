@@ -1,7 +1,7 @@
 version: '3'
 services:
   offer-storage-service:
-    image: allezon/offer-storage-service:1.0
+    image: allezon/offer-storage-service:0.1
     container_name: offer-storage-service
     ports:
       - "8080:8080"
@@ -28,7 +28,7 @@ services:
       - offer-storage-data:/var/lib/postgresql/data
 
   offer-cache-service:
-    image: allezon/offer-cache-service:1.6
+    image: allezon/offer-cache-service:0.1
     container_name: offer-cache-service
     ports:
       - "8081:8080"
@@ -54,7 +54,7 @@ services:
       - offer-cache-data:/bitnami
 
   offer-search-service:
-    image: allezon/offer-search-service:1.0
+    image: allezon/offer-search-service:0.1
     container_name: offer-search-service
     ports:
       - "8082:8080"
